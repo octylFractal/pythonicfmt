@@ -1,7 +1,7 @@
 use once_cell::sync::Lazy;
 use regex::Regex;
-use thiserror::Error;
 use std::cmp::max;
+use thiserror::Error;
 
 #[derive(Error, Debug)]
 pub enum Error {}
