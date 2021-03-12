@@ -1,6 +1,5 @@
 use once_cell::sync::Lazy;
 use regex::Regex;
-use std::cmp::max;
 use thiserror::Error;
 
 #[derive(Error, Debug)]
@@ -42,7 +41,7 @@ impl Formatter {
                     continue;
                 }
                 let size_before = junk_and_ws.start();
-                let space_count = max(0, self.junk_column - size_before);
+                let space_count = self.junk_column.saturating_sub(size_before);
                 line.replace_range(
                     size_before..,
                     &*(format!("{}{}", " ".repeat(space_count), junk_str,)),
@@ -61,7 +60,7 @@ impl Formatter {
         while index < lines.len() {
             let line = &mut lines[index];
             let line_without_ws = WS_REGEX.replace_all(&line, "").to_string();
-            if line_without_ws.chars().all(|c| JUNK_CHARS.contains(c)) {
+            if !line_without_ws.is_empty() && line_without_ws.chars().all(|c| JUNK_CHARS.contains(c)) {
                 lines[index - 1] += &*line_without_ws;
                 lines.remove(index);
                 index -= 1;

@@ -1,4 +1,4 @@
-#[deny(warnings)]
+#![deny(warnings)]
 use std::io::{Read, Write};
 use std::path::PathBuf;
 use std::process::exit;
