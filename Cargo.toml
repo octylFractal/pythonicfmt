@@ -1,0 +1,23 @@
+[package]
+name = "pythonicfmt"
+description = "Format any C-style code like Python!"
+keywords = ["formatter", "python"]
+categories = ["command-line-utilities"]
+version = "0.1.0"
+authors = ["Octavia Togami <octavia.togami@gmail.com>"]
+license = "GPL-3.0-or-later"
+readme = "README.md"
+repository = "https://github.com/octylFractal/pythonicfmt"
+edition = "2018"
+
+[dependencies]
+thiserror = "1"
+structopt = "0.3"
+once_cell = "1"
+console = "0.14"
+walkdir = "2"
+tempfile = "3"
+
+[dependencies.regex]
+version = "1"
+features = ["std", "perf"]
